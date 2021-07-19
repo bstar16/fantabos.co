@@ -73,4 +73,3 @@ public class AutoXP extends ToggleMod {
       }
     }
   }
-
