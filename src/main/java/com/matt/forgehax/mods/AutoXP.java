@@ -13,8 +13,11 @@ import com.matt.forgehax.util.mod.ToggleMod;
 import com.matt.forgehax.util.mod.loader.RegisterMod;
 import org.lwjgl.input.Keyboard;
 import java.util.Comparator;
+import net.munecraft.init.Items
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemExperienceBottle;
+import net.minecraft.item.ContainerPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -44,14 +47,21 @@ public class AutoPearl extends ToggleMod {
   }
 
   @SubscribeEvent
-  public void onKeyPressed(InputEvent.KeyInputEvent event){
-    if (bindMacro.isPressed() && getLocalPlayer() != null) {
-      InvItem items_stack = LocalPlayerInventory.getHotbarInventory()
-      .stream()
-      .filter(InvItem::nonNull)
-      .filter(held_item ->(held_item.getItem()) instanceof ItemEnderPearl)
-      .max(Comparator.comparingInt(LocalPlayerInventory::getHotbarDistance))
-      .orElse(InvItem.EMPTY);
+  public void onUpdate(LocalPlayerUpdateEvent event) {
+    if (!(LocalPlayerInventory.getOpenContainer() instanceof ContainerPlayer)) {
+      return;
+    }
+
+    if (xp_only.get() && 
+        !(getLocalPlayer().getHeldItemMainhand().getItem().equals(Items.EXPERIENCE_BOTTLE) &&
+          MC.gameSettings.keyBindUseItem.isKeyDown())) {
+          return;
+    }
+
+    if (cooldown > 0) {
+      cooldown--;
+      return;
+    }
     
       if (items_stack == null || items_stack.equals(InvItem.EMPTY)) {
         Helper.printError("Out of XP Bottles");
