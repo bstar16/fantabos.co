@@ -26,8 +26,8 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 //Coded by Fleyr (Thanks Tonio <3) on 7th August 2020
 
 @RegisterMod
-public class AutoPearl extends ToggleMod {
-  private final KeyBinding bindMacro = new KeyBinding("ThrowPearl", Keyboard.KEY_NONE, "ForgeHax");
+public class AutoXP extends ToggleMod {
+  private final KeyBinding bindMacro = new KeyBinding("ThrowEXP", Keyboard.KEY_NONE, "ForgeHax");
   
     /*  public final Setting<Integer> delay =
           getCommandStub()
@@ -41,8 +41,8 @@ public class AutoPearl extends ToggleMod {
               .build();
     */
 
-  public AutoPearl() {
-    super(Category.COMBAT, "AutoPearl", false, "Automatically throw an ender pearl and switch to the old item slot");
+  public AutoXP() {
+    super(Category.COMBAT, "AutoEXP", false, "Automatically throw EXP and switch to the old item slot");
     ClientRegistry.registerKeyBinding(this.bindMacro);
   }
 
