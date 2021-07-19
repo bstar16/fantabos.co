@@ -13,7 +13,7 @@ import com.matt.forgehax.util.mod.ToggleMod;
 import com.matt.forgehax.util.mod.loader.RegisterMod;
 import org.lwjgl.input.Keyboard;
 import java.util.Comparator;
-import net.munecraft.init.Items
+import net.munecraft.init.Items;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.item.ItemExperienceBottle;
 import net.minecraft.item.ContainerPlayer;
@@ -70,6 +70,8 @@ public class AutoXP extends ToggleMod {
       ResetFunction func = LocalPlayerInventory.setSelected(items_stack);
       getPlayerController().processRightClick(getLocalPlayer(), getWorld(), EnumHand.MAIN_HAND);
       func.revert();
+      }
     }
   }  
 }
+
