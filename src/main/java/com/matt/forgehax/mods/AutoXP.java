@@ -72,6 +72,5 @@ public class AutoXP extends ToggleMod {
       func.revert();
       }
     }
-  }  
-}
+  }
 
